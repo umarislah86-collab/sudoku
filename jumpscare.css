@@ -1,0 +1,45 @@
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(#101312ee, #101312ee), url("ego-jumpscare.png") center 24% / cover no-repeat;
+  opacity: 0.06;
+}
+
+header,
+main,
+footer,
+#taunt,
+dialog {
+  position: relative;
+  z-index: 1;
+}
+
+#jumpscare {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  background: #000 url("ego-jumpscare.png") center / cover no-repeat;
+  transform: scale(0.82) rotate(-1deg);
+}
+
+#jumpscare.show {
+  visibility: visible;
+  animation: ego-jump 900ms cubic-bezier(.15,.7,.15,1) both;
+}
+
+@keyframes ego-jump {
+  0% { opacity: 0; transform: scale(0.82) rotate(-1deg); }
+  9% { opacity: 1; transform: scale(1.04) rotate(.5deg); }
+  78% { opacity: 1; transform: scale(1) rotate(0); }
+  100% { opacity: 0; transform: scale(1.08) rotate(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #jumpscare.show { animation-duration: 200ms; }
+}
