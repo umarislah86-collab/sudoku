@@ -1,0 +1,33 @@
+:root {
+  color: #1d2a20;
+  background: #f7f3e9;
+  --accent: #3d7a48;
+  --muted: #617060;
+}
+
+body { background: #f7f3e9; }
+body::before { background: linear-gradient(#f7f3e9f2, #f7f3e9f2), url("ego-jumpscare.png") center 24% / cover no-repeat; opacity: .1; }
+header, footer { border-color: #d6d1c3; }
+.brand { color: #223326; }
+.brand-sub { border-color: #c9c7b9; }
+.game { background: #fffdf7; border-color: #b7c8ae; box-shadow: 0 25px 70px #63705228; }
+.difficulty { border-color: #8eae85; }
+#board { border-color: #587753; background: #587753; }
+.cell { background: #fbf8ef; color: #226437; }
+.cell.given { color: #202a21; background: #eff1e5; }
+.cell.error { color: #a92d23; background: #ffe1da; }
+.cell:nth-child(3n):not(:nth-child(9n)),
+.cell:nth-child(n+19):nth-child(-n+27),
+.cell:nth-child(n+46):nth-child(-n+54) { border-color: #587753; }
+.pencil { color: #386845; }
+.digits button { background: #e4efe0; border-color: #a9c1a4; color: #275f36; }
+.tools button { color: #52624f; }
+.tools button.active { color: #245e35; background: #dbead3; }
+.level.current { background: #e6f1df; border-color: #9cba93; }
+.challenge-note { border-color: #cdd4c8; }
+.game-bottom button { color: #246338; }
+#overlay { background: #f5f8f0f2; color: #203825; }
+dialog { background: #fffdf7; border-color: #8fa987; color: #1d2a20; }
+dialog p { color: #52624f; }
+#taunt { background: #eff8e9; color: #1d2a20; border-color: #619765; box-shadow: 0 16px 45px #45513b45; }
+#taunt strong { color: #246338; }
