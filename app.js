@@ -22,8 +22,10 @@ const progressTaunts=[
   [75,'75% complete.', 'Almost there. Do not let one silly number ruin everything. 😂'],
   [90,'90% complete.', 'Just a little left. Time to panic professionally. 😌']
 ];
-const $=s=>document.querySelector(s), key='ego-check-v1';
+const $=s=>document.querySelector(s), releaseKey="ego-check-release", key='ego-check-v1';
 let saved;try{saved=JSON.parse(localStorage.getItem(key))}catch{}
+async function refreshWhenUpdated(){try{const response=await fetch("version.json?ts="+Date.now(),{cache:"no-store"});if(!response.ok)return;const {version}=await response.json(),previous=localStorage.getItem(releaseKey);if(previous&&previous!==version){localStorage.setItem(releaseKey,version);location.reload();return}localStorage.setItem(releaseKey,version)}catch{}}
+refreshWhenUpdated();setInterval(refreshWhenUpdated,60000);
 let index=Number.isInteger(saved?.index)&&saved.index>=0&&saved.index<10?saved.index:0;
 let states=puzzles.map((p,i)=>{let s=saved?.states?.[i];return s&&Array.isArray(s.values)&&s.values.length===81&&s.values.every((v,j)=>Number.isInteger(v)&&v>=0&&v<=9&&(!p.givens[j]||v===p.givens[j]))?{...s,notes:Array.isArray(s.notes)&&s.notes.length===81?s.notes.map(n=>Array.isArray(n)?n.filter(v=>Number.isInteger(v)&&v>=1&&v<=9):[]):Array.from({length:81},()=>[]),history:[],seconds:Number(s.seconds)||0,hintAttempts:Math.max(0,Math.floor(Number(s.hintAttempts)||0)),pauseCount:Math.max(0,Math.floor(Number(s.pauseCount)||0)),taunts:Array.isArray(s.taunts)?s.taunts.filter(t=>typeof t==="string"):[],jumpscares:Array.isArray(s.jumpscares)?s.jumpscares.filter(j=>typeof j==="string"):[],done:!!s.done}:fresh(p)});
 function fresh(p){return {values:[...p.givens],notes:Array.from({length:81},()=>[]),seconds:0,hintAttempts:0,pauseCount:0,taunts:[],jumpscares:[],done:false,history:[]}}

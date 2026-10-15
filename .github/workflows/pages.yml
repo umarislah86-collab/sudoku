@@ -26,6 +26,7 @@ jobs:
         run: |
           mkdir site
           cp index.html app.js style.css jumpscare.css ego-jumpscare.png puzzles.js site/
+          printf '{"version":"%s"}\n' "$GITHUB_SHA" > site/version.json
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
