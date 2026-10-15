@@ -25,7 +25,7 @@ jobs:
       - name: Prepare static site
         run: |
           mkdir site
-          cp index.html app.js style.css jumpscare.css ego-jumpscare.png puzzles.js site/
+          cp index.html app.js style.css jumpscare.css light-theme.css ego-jumpscare.png puzzles.js site/
           printf '{"version":"%s"}\n' "$GITHUB_SHA" > site/version.json
       - uses: actions/upload-pages-artifact@v3
         with:
