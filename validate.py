@@ -14,9 +14,9 @@ def solutions(b):
    if len(found)>1:break
   b[i]=0
  search();return found
-assert len(puzzles)==10
-assert len({tuple(p['givens']) for p in puzzles})==10
-for p in puzzles:
+assert len(puzzles)==30
+assert len({tuple(p['givens']) for p in puzzles})==30
+for n,p in enumerate(puzzles):
  assert all(set(p['solution'][i] for i in u)==set(range(1,10)) for u in units)
  assert all(not v or v==p['solution'][i] for i,v in enumerate(p['givens']))
  assert solutions(p['givens'])==[p['solution']]
@@ -31,6 +31,6 @@ for p in puzzles:
   if not moves:break
   for i,v in moves.items():b[i]=v
  assert sum(v==0 for v in b)==p['singlesRemaining']>=45
- assert p['searchNodes']>=5000
+ assert p['searchNodes'] >= (5000 if n < 10 else 15000)
  print(f"Puzzle {p['id']:02}: unique, valid; {p['clues']} clues, {p['searchNodes']} search nodes")
-print('PASS: 10 distinct puzzles')
+print('PASS: 30 distinct puzzles; puzzles 11–30 meet the advanced 15,000-node threshold')
